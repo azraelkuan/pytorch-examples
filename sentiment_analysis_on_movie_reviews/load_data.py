@@ -1,13 +1,15 @@
+import torch
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from collections import Counter
 from torch.utils.data import Dataset
 
 
-def create_lexicon(train_file, test_file):
+def create_lexicon(train_file, test_file, dev_file):
     lex = []
     lex += precess_file(train_file)
     lex += precess_file(test_file)
+    lex += precess_file(dev_file)
     lemmatizer = WordNetLemmatizer()
     # "cats" ==> "cat"
     lex = [lemmatizer.lemmatize(word) for word in lex]
@@ -21,8 +23,8 @@ def create_lexicon(train_file, test_file):
 
 
 def precess_file(txt):
+    lex = []
     with open(txt, 'r', encoding='utf-8') as f:
-        lex = []
         lines = f.readlines()
         for line in lines[1:]:
             # "this is a word." ==> ['this', 'is', 'a', 'word', '.']
@@ -35,16 +37,21 @@ def precess_file(txt):
     return lex
 
 
-class CommentDataSet(Dataset):
-    def __init__(self, lex, train_file, test_file):
-        super(CommentDataSet, self).__init__()
+class SentimentDataSet(Dataset):
+    def __init__(self, lex, input_file, mode):
+        super(SentimentDataSet, self).__init__()
+        self.mode = mode
         self.lemmatizer = WordNetLemmatizer()
         self.data = []
-        self.add_item(train_file, lex, mode="train")
-        self.add_item(test_file, lex, mode="test")
+        self.label = []
+        self.add_item(input_file, lex, mode)
 
     def __getitem__(self, idx):
-        return self.data[idx]
+        if self.mode == 'train':
+            sample = {'input_data': torch.LongTensor(self.data[idx]), 'label': torch.LongTensor([self.label[idx]])}
+        if self.mode == 'test':
+            sample = {'input_data': torch.LongTensor(self.data[idx])}
+        return sample
 
     def __len__(self):
         return len(self.data)
@@ -60,22 +67,17 @@ class CommentDataSet(Dataset):
                 if word in lex:
                     feature[lex.index(word)] = 1
             if mode == "train":
-                target = [0 for _ in range(5)]
-                target[int(line[3])] = 1
+                target = int(line[3])
+                self.data.append(feature)
+                self.label.append(target)
             if mode == "test":
-                target = [0 for _ in range(5)]
-            return feature, target
-        else:
-            return None
+                self.data.append(feature)
 
     def add_item(self, txt, lex, mode):
         with open(txt, 'r', encoding='utf-8') as f:
             lines = f.readlines()
             for line in lines[1:]:
-                feature, target = self.string2vector(lex, line, mode)
-                self.data.append(
-                    [feature, target]
-                )
+                self.string2vector(lex, line, mode)
 
 
 """
@@ -83,6 +85,6 @@ test dataset
 """
 # if __name__ == '__main__':
 #     lex_text = create_lexicon("data/train.tsv", 'data/test.tsv')
-#     dataset = CommentDataSet(lex_text, "data/train.tsv", 'data/test.tsv')
-#     for each in dataset:
-#         print(each)
+#     dataset = SentimentDataSet(lex_text, "data/train.tsv", "train")
+#     for sample in dataset:
+#         print(sample['input_data'], sample['label'])
