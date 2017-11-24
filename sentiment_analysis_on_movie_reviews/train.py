@@ -12,13 +12,16 @@ class DnnModel(nn.ModuleList):
         super(DnnModel, self).__init__()
         self.linear1 = nn.Linear(input_dim, hidden_size)
         self.linear2 = nn.Linear(hidden_size, hidden_size)
-        self.linear3 = nn.Linear(hidden_size, output_dim)
-        self.nonlinear = nn.Sigmoid()
+        self.linear3 = nn.Linear(hidden_size, hidden_size)
+        self.linear4 = nn.Linear(hidden_size, output_dim)
+        self.nonlinear = nn.ReLU()
+        self.bn = nn.BatchNorm1d(hidden_size)
 
     def forward(self, x):
-        out = self.nonlinear(self.linear1(x))
-        out = self.nonlinear(self.linear2(out))
-        out = self.linear3(out)
+        out = self.bn(self.nonlinear(self.linear1(x)))
+        out = self.bn(self.nonlinear(self.linear2(out)))
+        out = self.bn(self.nonlinear(self.linear3(out)))
+        out = self.linear4(out)
         return out
 
 
@@ -61,11 +64,13 @@ def main(train_file, test_file, dev_file):
         total = 0
         for each_data in dev_dataloader:
             input_data = Variable(each_data['input_data']).float()
-            labels = each_data['label'].view(-1)
+            labels = Variable(each_data['label'].view(-1))
+            if use_cuda:
+                input_data, labels = input_data.cuda(), labels.cuda()
             predict = net(input_data)
             _, predicted = torch.max(predict.data, 1)
             total += labels.size(0)
-            correct += (predicted == labels).sum()
+            correct += (predicted == labels.data).sum()
 
         print("Epoch : {} \t Loss : {} \t accuracy : {}".format(epoch, epoch_loss / len(train_dataloader), correct / total))
 
