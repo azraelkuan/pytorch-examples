@@ -45,6 +45,7 @@ def main(train_file, test_file, dev_file):
     optimizer = optim.Adam(lr=0.001, params=net.parameters())
     cross_entropy = nn.CrossEntropyLoss()
 
+    base_loss = 100
     for epoch in range(100):
         epoch_loss = 0.
         for each_data in train_dataloader:
@@ -73,6 +74,10 @@ def main(train_file, test_file, dev_file):
             correct += (predicted == labels.data).sum()
 
         print("Epoch : {} \t Loss : {} \t accuracy : {}".format(epoch, epoch_loss / len(train_dataloader), correct / total))
+
+        if (epoch_loss / len(train_dataloader)) < base_loss:
+            base_loss = epoch_loss / len(train_dataloader)
+            torch.save(net, "result/model.pkl")
 
 
 def get_args():
