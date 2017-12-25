@@ -8,6 +8,8 @@ from torch.utils.data import DataLoader
 from pre_process import transform_train, transform_test
 from skorch.net import NeuralNetClassifier
 
+
+
 batch_size = 256
 use_cuda = torch.cuda.is_available()
 

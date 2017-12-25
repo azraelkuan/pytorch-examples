@@ -19,8 +19,8 @@ test_dataset = torchvision.datasets.CIFAR10(root="../data", train=False, downloa
 test_dataloader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=2)
 
 # net = model.LogisticRegression(3072, 10)
-net = model.DNN(3072, 4096, 10)
-# net = model.ResNet18()
+#net = model.DNN(3072, 4096, 10)
+net = model.ResNet18()
 if use_cuda:
     net = net.cuda()
 

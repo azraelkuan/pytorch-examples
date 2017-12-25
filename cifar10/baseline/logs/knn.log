@@ -1,0 +1,410 @@
+Training data shape:  (50000, 32, 32, 3)
+Training labels shape:  (50000,)
+Test data shape:  (10000, 32, 32, 3)
+Test labels shape:  (10000,)
+Sample Data shape: x_train: (5000, 3072), x_test: (500, 3072)
+Begin to select best_parameters
+Fitting 5 folds for each of 24 candidates, totalling 120 fits
+[CV] knn__n_neighbors=3, knn__weights=distance .......................
+[CV]  knn__n_neighbors=3, knn__weights=distance, score=0.2660642570281124, total=  39.5s
+[CV] knn__n_neighbors=7, knn__weights=distance .......................
+[CV]  knn__n_neighbors=7, knn__weights=distance, score=0.28815261044176704, total=  40.4s
+[CV] knn__n_neighbors=10, knn__weights=distance ......................
+[CV]  knn__n_neighbors=10, knn__weights=distance, score=0.2791164658634538, total=  40.3s
+[CV] knn__n_neighbors=17, knn__weights=distance ......................
+[CV]  knn__n_neighbors=17, knn__weights=distance, score=0.27710843373493976, total=  40.0s
+[CV] knn__n_neighbors=75, knn__weights=uniform .......................
+[CV]  knn__n_neighbors=75, knn__weights=uniform, score=0.2677322677322677, total=  41.0s
+[CV] knn__n_neighbors=3, knn__weights=uniform ........................
+[CV]  knn__n_neighbors=3, knn__weights=uniform, score=0.2459839357429719, total=  39.2s
+[CV] knn__n_neighbors=7, knn__weights=distance .......................
+[CV]  knn__n_neighbors=7, knn__weights=distance, score=0.2851445663010967, total=  40.3s
+[CV] knn__n_neighbors=10, knn__weights=distance ......................
+[CV]  knn__n_neighbors=10, knn__weights=distance, score=0.2872872872872873, total=  40.3s
+[CV] knn__n_neighbors=17, knn__weights=distance ......................
+[CV]  knn__n_neighbors=17, knn__weights=distance, score=0.2932932932932933, total=  40.2s
+[CV] knn__n_neighbors=50, knn__weights=distance ......................
+[CV]  knn__n_neighbors=50, knn__weights=distance, score=0.2887112887112887, total=  40.7s
+[CV] knn__n_neighbors=3, knn__weights=distance .......................
+[CV]  knn__n_neighbors=3, knn__weights=distance, score=0.25074925074925075, total=  38.8s
+[CV] knn__n_neighbors=7, knn__weights=uniform ........................
+[CV]  knn__n_neighbors=7, knn__weights=uniform, score=0.26873126873126874, total=  39.9s
+[CV] knn__n_neighbors=10, knn__weights=uniform .......................
+[CV]  knn__n_neighbors=10, knn__weights=uniform, score=0.28471528471528473, total=  40.0s
+[CV] knn__n_neighbors=17, knn__weights=uniform .......................
+[CV]  knn__n_neighbors=17, knn__weights=uniform, score=0.28428428428428426, total=  40.4s
+[CV] knn__n_neighbors=50, knn__weights=uniform .......................
+[CV]  knn__n_neighbors=50, knn__weights=uniform, score=0.2702702702702703, total=  40.7s
+[CV] knn__n_neighbors=100, knn__weights=uniform ......................
+[CV]  knn__n_neighbors=100, knn__weights=uniform, score=0.2660642570281124, total=  32.8s
+[CV] knn__n_neighbors=1, knn__weights=distance .......................
+[CV]  knn__n_neighbors=1, knn__weights=distance, score=0.2832832832832833, total=  38.3s
+[CV] knn__n_neighbors=5, knn__weights=distance .......................
+[CV]  knn__n_neighbors=5, knn__weights=distance, score=0.26073926073926074, total=  37.6s
+[CV] knn__n_neighbors=9, knn__weights=uniform ........................
+[CV]  knn__n_neighbors=9, knn__weights=uniform, score=0.27172827172827174, total=  37.8s
+[CV] knn__n_neighbors=13, knn__weights=uniform .......................
+[CV]  knn__n_neighbors=13, knn__weights=uniform, score=0.27018943170488535, total=  39.5s
+[CV] knn__n_neighbors=20, knn__weights=uniform .......................
+[CV]  knn__n_neighbors=20, knn__weights=uniform, score=0.28112449799196787, total=  39.0s
+[CV] knn__n_neighbors=75, knn__weights=uniform .......................
+[CV]  knn__n_neighbors=75, knn__weights=uniform, score=0.26321036889332006, total=  39.8s
+[CV] knn__n_neighbors=3, knn__weights=uniform ........................
+[CV]  knn__n_neighbors=3, knn__weights=uniform, score=0.24075924075924077, total=  38.6s
+[CV] knn__n_neighbors=7, knn__weights=uniform ........................
+[CV]  knn__n_neighbors=7, knn__weights=uniform, score=0.26819541375872386, total=  40.0s
+[CV] knn__n_neighbors=10, knn__weights=uniform .......................
+[CV]  knn__n_neighbors=10, knn__weights=uniform, score=0.2867132867132867, total=  40.6s
+[CV] knn__n_neighbors=17, knn__weights=uniform .......................
+[CV]  knn__n_neighbors=17, knn__weights=uniform, score=0.26907630522088355, total=  40.1s
+[CV] knn__n_neighbors=50, knn__weights=distance ......................
+[CV]  knn__n_neighbors=50, knn__weights=distance, score=0.28015952143569295, total=  40.9s
+[CV] knn__n_neighbors=100, knn__weights=distance .....................
+[CV]  knn__n_neighbors=100, knn__weights=distance, score=0.27018943170488535, total=  32.8s
+[CV] knn__n_neighbors=3, knn__weights=uniform ........................
+[CV]  knn__n_neighbors=3, knn__weights=uniform, score=0.2652652652652653, total=  39.7s
+[CV] knn__n_neighbors=7, knn__weights=uniform ........................
+[CV]  knn__n_neighbors=7, knn__weights=uniform, score=0.2727272727272727, total=  37.7s
+[CV] knn__n_neighbors=10, knn__weights=uniform .......................
+[CV]  knn__n_neighbors=10, knn__weights=uniform, score=0.2761044176706827, total=  39.8s
+[CV] knn__n_neighbors=17, knn__weights=uniform .......................
+[CV]  knn__n_neighbors=17, knn__weights=uniform, score=0.2807192807192807, total=  38.5s
+[CV] knn__n_neighbors=50, knn__weights=uniform .......................
+[CV]  knn__n_neighbors=50, knn__weights=uniform, score=0.2677322677322677, total=  38.1s
+[CV] knn__n_neighbors=100, knn__weights=uniform ......................
+[CV]  knn__n_neighbors=100, knn__weights=uniform, score=0.25774225774225773, total=  39.4s
+[CV] knn__n_neighbors=1, knn__weights=uniform ........................
+[CV]  knn__n_neighbors=1, knn__weights=uniform, score=0.2640562248995984, total=  37.8s
+[CV] knn__n_neighbors=5, knn__weights=uniform ........................
+[CV]  knn__n_neighbors=5, knn__weights=uniform, score=0.2517482517482518, total=  37.4s
+[CV] knn__n_neighbors=9, knn__weights=distance .......................
+[CV]  knn__n_neighbors=9, knn__weights=distance, score=0.27716849451645065, total=  39.5s
+[CV] knn__n_neighbors=13, knn__weights=uniform .......................
+[CV]  knn__n_neighbors=13, knn__weights=uniform, score=0.2772772772772773, total=  38.6s
+[CV] knn__n_neighbors=20, knn__weights=uniform .......................
+[CV]  knn__n_neighbors=20, knn__weights=uniform, score=0.2707292707292707, total=  39.5s
+[CV] knn__n_neighbors=50, knn__weights=distance ......................
+[CV]  knn__n_neighbors=50, knn__weights=distance, score=0.27309236947791166, total=  37.9s
+[CV] knn__n_neighbors=100, knn__weights=distance .....................
+[CV]  knn__n_neighbors=100, knn__weights=distance, score=0.26073926073926074, total=  35.1s
+[CV] knn__n_neighbors=3, knn__weights=distance .......................
+[CV]  knn__n_neighbors=3, knn__weights=distance, score=0.2832832832832833, total=  39.9s
+[CV] knn__n_neighbors=7, knn__weights=distance .......................
+[CV]  knn__n_neighbors=7, knn__weights=distance, score=0.3083083083083083, total=  38.9s
+[CV] knn__n_neighbors=10, knn__weights=uniform .......................
+[CV]  knn__n_neighbors=10, knn__weights=uniform, score=0.2822822822822823, total=  38.5s
+[CV] knn__n_neighbors=17, knn__weights=uniform .......................
+[CV]  knn__n_neighbors=17, knn__weights=uniform, score=0.26719840478564305, total=  38.5s
+[CV] knn__n_neighbors=50, knn__weights=uniform .......................
+[CV]  knn__n_neighbors=50, knn__weights=uniform, score=0.27716849451645065, total=  38.7s
+[CV] knn__n_neighbors=100, knn__weights=uniform ......................
+[CV]  knn__n_neighbors=100, knn__weights=uniform, score=0.2707292707292707, total=  39.0s
+[CV] knn__n_neighbors=1, knn__weights=uniform ........................
+[CV]  knn__n_neighbors=1, knn__weights=uniform, score=0.2832832832832833, total=  38.8s
+[CV] knn__n_neighbors=5, knn__weights=uniform ........................
+[CV]  knn__n_neighbors=5, knn__weights=uniform, score=0.28928928928928926, total=  40.6s
+[CV] knn__n_neighbors=9, knn__weights=distance .......................
+[CV]  knn__n_neighbors=9, knn__weights=distance, score=0.2907092907092907, total=  37.8s
+[CV] knn__n_neighbors=13, knn__weights=uniform .......................
+[CV]  knn__n_neighbors=13, knn__weights=uniform, score=0.2817182817182817, total=  38.8s
+[CV] knn__n_neighbors=20, knn__weights=distance ......................
+[CV]  knn__n_neighbors=20, knn__weights=distance, score=0.2811565304087737, total=  41.0s
+[CV] knn__n_neighbors=75, knn__weights=distance ......................
+[CV]  knn__n_neighbors=75, knn__weights=distance, score=0.26573426573426573, total=  38.7s
+[CV] knn__n_neighbors=1, knn__weights=distance .......................
+[CV]  knn__n_neighbors=1, knn__weights=distance, score=0.26819541375872386, total=  38.1s
+[CV] knn__n_neighbors=5, knn__weights=uniform ........................
+[CV]  knn__n_neighbors=5, knn__weights=uniform, score=0.2720883534136546, total=  40.2s
+[CV] knn__n_neighbors=9, knn__weights=distance .......................
+[CV]  knn__n_neighbors=9, knn__weights=distance, score=0.2982982982982983, total=  40.5s
+[CV] knn__n_neighbors=13, knn__weights=distance ......................
+[CV]  knn__n_neighbors=13, knn__weights=distance, score=0.2932932932932933, total=  40.7s
+[CV] knn__n_neighbors=20, knn__weights=distance ......................
+[CV]  knn__n_neighbors=20, knn__weights=distance, score=0.2907092907092907, total=  40.7s
+[CV] knn__n_neighbors=75, knn__weights=distance ......................
+[CV]  knn__n_neighbors=75, knn__weights=distance, score=0.2727272727272727, total=  41.0s
+[CV] knn__n_neighbors=1, knn__weights=uniform ........................
+[CV]  knn__n_neighbors=1, knn__weights=uniform, score=0.2707292707292707, total=  38.7s
+[CV] knn__n_neighbors=5, knn__weights=uniform ........................
+[CV]  knn__n_neighbors=5, knn__weights=uniform, score=0.2837162837162837, total=  38.3s
+[CV] knn__n_neighbors=9, knn__weights=uniform ........................
+[CV]  knn__n_neighbors=9, knn__weights=uniform, score=0.2691924227318046, total=  40.1s
+[CV] knn__n_neighbors=13, knn__weights=uniform .......................
+[CV]  knn__n_neighbors=13, knn__weights=uniform, score=0.2787212787212787, total=  38.2s
+[CV] knn__n_neighbors=20, knn__weights=uniform .......................
+[CV]  knn__n_neighbors=20, knn__weights=uniform, score=0.28015952143569295, total=  40.8s
+[CV] knn__n_neighbors=75, knn__weights=distance ......................
+[CV]  knn__n_neighbors=75, knn__weights=distance, score=0.26719840478564305, total=  41.0s
+[CV] knn__n_neighbors=1, knn__weights=distance .......................
+[CV]  knn__n_neighbors=1, knn__weights=distance, score=0.24675324675324675, total=  38.8s
+[CV] knn__n_neighbors=5, knn__weights=distance .......................
+[CV]  knn__n_neighbors=5, knn__weights=distance, score=0.2967032967032967, total=  40.7s
+[CV] knn__n_neighbors=9, knn__weights=distance .......................
+[CV]  knn__n_neighbors=9, knn__weights=distance, score=0.28815261044176704, total=  40.7s
+[CV] knn__n_neighbors=13, knn__weights=distance ......................
+[CV]  knn__n_neighbors=13, knn__weights=distance, score=0.285140562248996, total=  40.7s
+[CV] knn__n_neighbors=20, knn__weights=distance ......................
+[CV]  knn__n_neighbors=20, knn__weights=distance, score=0.28413654618473894, total=  40.8s
+[CV] knn__n_neighbors=75, knn__weights=distance ......................
+[CV]  knn__n_neighbors=75, knn__weights=distance, score=0.26706827309236947, total=  40.8s
+[CV] knn__n_neighbors=1, knn__weights=uniform ........................
+[CV]  knn__n_neighbors=1, knn__weights=uniform, score=0.24675324675324675, total=  39.3s
+[CV] knn__n_neighbors=5, knn__weights=distance .......................
+[CV]  knn__n_neighbors=5, knn__weights=distance, score=0.2741774675972084, total=  39.9s
+[CV] knn__n_neighbors=9, knn__weights=distance .......................
+[CV]  knn__n_neighbors=9, knn__weights=distance, score=0.3086913086913087, total=  40.0s
+[CV] knn__n_neighbors=13, knn__weights=distance ......................
+[CV]  knn__n_neighbors=13, knn__weights=distance, score=0.2937062937062937, total=  40.5s
+[CV] knn__n_neighbors=20, knn__weights=distance ......................
+[CV]  knn__n_neighbors=20, knn__weights=distance, score=0.28928928928928926, total=  40.8s
+[CV] knn__n_neighbors=75, knn__weights=distance ......................
+[CV]  knn__n_neighbors=75, knn__weights=distance, score=0.2682682682682683, total=  41.4s
+[CV] knn__n_neighbors=3, knn__weights=distance .......................
+[CV]  knn__n_neighbors=3, knn__weights=distance, score=0.2817182817182817, total=  38.8s
+[CV] knn__n_neighbors=7, knn__weights=distance .......................
+[CV]  knn__n_neighbors=7, knn__weights=distance, score=0.2997002997002997, total=  39.4s
+[CV] knn__n_neighbors=10, knn__weights=distance ......................
+[CV]  knn__n_neighbors=10, knn__weights=distance, score=0.3006993006993007, total=  40.6s
+[CV] knn__n_neighbors=17, knn__weights=distance ......................
+[CV]  knn__n_neighbors=17, knn__weights=distance, score=0.2957042957042957, total=  40.2s
+[CV] knn__n_neighbors=50, knn__weights=distance ......................
+[CV]  knn__n_neighbors=50, knn__weights=distance, score=0.2732732732732733, total=  40.8s
+[CV] knn__n_neighbors=3, knn__weights=uniform ........................
+[CV]  knn__n_neighbors=3, knn__weights=uniform, score=0.24175824175824176, total=  39.5s
+[CV] knn__n_neighbors=7, knn__weights=uniform ........................
+[CV]  knn__n_neighbors=7, knn__weights=uniform, score=0.2710843373493976, total=  40.1s
+[CV] knn__n_neighbors=10, knn__weights=distance ......................
+[CV]  knn__n_neighbors=10, knn__weights=distance, score=0.2897102897102897, total=  40.3s
+[CV] knn__n_neighbors=17, knn__weights=distance ......................
+[CV]  knn__n_neighbors=17, knn__weights=distance, score=0.2807192807192807, total=  40.0s
+[CV] knn__n_neighbors=50, knn__weights=distance ......................
+[CV]  knn__n_neighbors=50, knn__weights=distance, score=0.26973026973026976, total=  40.8s
+[CV] knn__n_neighbors=3, knn__weights=uniform ........................
+[CV]  knn__n_neighbors=3, knn__weights=uniform, score=0.24626121635094717, total=  39.3s
+[CV] knn__n_neighbors=7, knn__weights=uniform ........................
+[CV]  knn__n_neighbors=7, knn__weights=uniform, score=0.2952952952952953, total=  38.1s
+[CV] knn__n_neighbors=10, knn__weights=uniform .......................
+[CV]  knn__n_neighbors=10, knn__weights=uniform, score=0.2761714855433699, total=  38.8s
+[CV] knn__n_neighbors=17, knn__weights=uniform .......................
+[CV]  knn__n_neighbors=17, knn__weights=uniform, score=0.2707292707292707, total=  40.6s
+[CV] knn__n_neighbors=50, knn__weights=uniform .......................
+[CV]  knn__n_neighbors=50, knn__weights=uniform, score=0.2837162837162837, total=  38.2s
+[CV] knn__n_neighbors=100, knn__weights=uniform ......................
+[CV]  knn__n_neighbors=100, knn__weights=uniform, score=0.26520438683948155, total=  40.2s
+[CV] knn__n_neighbors=3, knn__weights=distance .......................
+[CV]  knn__n_neighbors=3, knn__weights=distance, score=0.26520438683948155, total=  39.6s
+[CV] knn__n_neighbors=7, knn__weights=distance .......................
+[CV]  knn__n_neighbors=7, knn__weights=distance, score=0.27472527472527475, total=  38.1s
+[CV] knn__n_neighbors=10, knn__weights=distance ......................
+[CV]  knn__n_neighbors=10, knn__weights=distance, score=0.28215353938185445, total=  40.0s
+[CV] knn__n_neighbors=17, knn__weights=distance ......................
+[CV]  knn__n_neighbors=17, knn__weights=distance, score=0.2711864406779661, total=  40.1s
+[CV] knn__n_neighbors=50, knn__weights=uniform .......................
+[CV]  knn__n_neighbors=50, knn__weights=uniform, score=0.26506024096385544, total=  40.5s
+[CV] knn__n_neighbors=100, knn__weights=uniform ......................
+[CV]  knn__n_neighbors=100, knn__weights=uniform, score=0.26226226226226224, total=  33.4s
+[CV] knn__n_neighbors=1, knn__weights=distance .......................
+[CV]  knn__n_neighbors=1, knn__weights=distance, score=0.2707292707292707, total=  39.0s
+[CV] knn__n_neighbors=5, knn__weights=distance .......................
+[CV]  knn__n_neighbors=5, knn__weights=distance, score=0.3003003003003003, total=  37.8s
+[CV] knn__n_neighbors=9, knn__weights=uniform ........................
+[CV]  knn__n_neighbors=9, knn__weights=uniform, score=0.2902902902902903, total=  40.8s
+[CV] knn__n_neighbors=13, knn__weights=distance ......................
+[CV]  knn__n_neighbors=13, knn__weights=distance, score=0.2781655034895314, total=  38.7s
+[CV] knn__n_neighbors=20, knn__weights=uniform .......................
+[CV]  knn__n_neighbors=20, knn__weights=uniform, score=0.27927927927927926, total=  39.2s
+[CV] knn__n_neighbors=75, knn__weights=uniform .......................
+[CV]  knn__n_neighbors=75, knn__weights=uniform, score=0.25874125874125875, total=  38.2s
+[CV] knn__n_neighbors=100, knn__weights=distance .....................
+[CV]  knn__n_neighbors=100, knn__weights=distance, score=0.27672327672327673, total=  32.6s
+**************************************************
+    mean_fit_time  mean_score_time  mean_test_score  mean_train_score  \
+0        0.985133        37.548312           0.2666          1.000000   
+1        0.992323        37.523353           0.2666          1.000000   
+2        1.139269        38.120980           0.2480          0.521751   
+3        1.308098        38.034489           0.2694          1.000000   
+4        1.025154        37.744566           0.2708          0.447753   
+5        1.169318        37.562360           0.2826          1.000000   
+6        1.124544        38.037772           0.2752          0.407401   
+7        1.156221        38.265883           0.2912          1.000000   
+8        1.167294        38.398954           0.2798          0.382650   
+9        1.108080        38.576643           0.2926          1.000000   
+10       1.132081        38.404354           0.2812          0.374501   
+11       1.091738        39.189208           0.2878          1.000000   
+12       1.159867        37.597116           0.2766          0.355800   
+13       1.117072        39.016203           0.2870          1.000000   
+14       1.119071        38.506147           0.2744          0.340450   
+15       1.105161        38.991613           0.2836          1.000000   
+16       1.203748        38.448391           0.2782          0.328151   
+17       1.146101        39.320143           0.2848          1.000000   
+18       1.145347        38.072555           0.2728          0.295201   
+19       1.126910        39.105335           0.2770          1.000000   
+20       1.151734        37.932350           0.2628          0.283901   
+21       1.100953        39.497209           0.2682          1.000000   
+22       1.138400        35.828859           0.2644          0.274452   
+23       1.142894        32.827837           0.2676          1.000000   
+
+   param_knn__n_neighbors param_knn__weights  \
+0                       1            uniform   
+1                       1           distance   
+2                       3            uniform   
+3                       3           distance   
+4                       5            uniform   
+5                       5           distance   
+6                       7            uniform   
+7                       7           distance   
+8                       9            uniform   
+9                       9           distance   
+10                     10            uniform   
+11                     10           distance   
+12                     13            uniform   
+13                     13           distance   
+14                     17            uniform   
+15                     17           distance   
+16                     20            uniform   
+17                     20           distance   
+18                     50            uniform   
+19                     50           distance   
+20                     75            uniform   
+21                     75           distance   
+22                    100            uniform   
+23                    100           distance   
+
+                                               params  rank_test_score  \
+0   {'knn__n_neighbors': 1, 'knn__weights': 'unifo...               20   
+1   {'knn__n_neighbors': 1, 'knn__weights': 'dista...               20   
+2   {'knn__n_neighbors': 3, 'knn__weights': 'unifo...               24   
+3   {'knn__n_neighbors': 3, 'knn__weights': 'dista...               17   
+4   {'knn__n_neighbors': 5, 'knn__weights': 'unifo...               16   
+5   {'knn__n_neighbors': 5, 'knn__weights': 'dista...                7   
+6   {'knn__n_neighbors': 7, 'knn__weights': 'unifo...               13   
+7   {'knn__n_neighbors': 7, 'knn__weights': 'dista...                2   
+8   {'knn__n_neighbors': 9, 'knn__weights': 'unifo...                9   
+9   {'knn__n_neighbors': 9, 'knn__weights': 'dista...                1   
+10  {'knn__n_neighbors': 10, 'knn__weights': 'unif...                8   
+11  {'knn__n_neighbors': 10, 'knn__weights': 'dist...                3   
+12  {'knn__n_neighbors': 13, 'knn__weights': 'unif...               12   
+13  {'knn__n_neighbors': 13, 'knn__weights': 'dist...                4   
+14  {'knn__n_neighbors': 17, 'knn__weights': 'unif...               14   
+15  {'knn__n_neighbors': 17, 'knn__weights': 'dist...                6   
+16  {'knn__n_neighbors': 20, 'knn__weights': 'unif...               10   
+17  {'knn__n_neighbors': 20, 'knn__weights': 'dist...                5   
+18  {'knn__n_neighbors': 50, 'knn__weights': 'unif...               15   
+19  {'knn__n_neighbors': 50, 'knn__weights': 'dist...               11   
+20  {'knn__n_neighbors': 75, 'knn__weights': 'unif...               23   
+21  {'knn__n_neighbors': 75, 'knn__weights': 'dist...               18   
+22  {'knn__n_neighbors': 100, 'knn__weights': 'uni...               22   
+23  {'knn__n_neighbors': 100, 'knn__weights': 'dis...               19   
+
+    split0_test_score  split0_train_score       ...         split2_test_score  \
+0            0.268195            1.000000       ...                  0.270729   
+1            0.268195            1.000000       ...                  0.270729   
+2            0.246261            0.525644       ...                  0.241758   
+3            0.265204            1.000000       ...                  0.281718   
+4            0.257228            0.456843       ...                  0.283716   
+5            0.274177            1.000000       ...                  0.296703   
+6            0.268195            0.413060       ...                  0.272727   
+7            0.285145            1.000000       ...                  0.299700   
+8            0.269192            0.384288       ...                  0.285714   
+9            0.277168            1.000000       ...                  0.308691   
+10           0.276171            0.379785       ...                  0.284715   
+11           0.282154            1.000000       ...                  0.300699   
+12           0.270189            0.357518       ...                  0.281718   
+13           0.278166            1.000000       ...                  0.293706   
+14           0.267198            0.342757       ...                  0.280719   
+15           0.271186            1.000000       ...                  0.295704   
+16           0.280160            0.332249       ...                  0.279720   
+17           0.281157            1.000000       ...                  0.290709   
+18           0.277168            0.303478       ...                  0.283716   
+19           0.280160            1.000000       ...                  0.288711   
+20           0.263210            0.291469       ...                  0.267732   
+21           0.267198            1.000000       ...                  0.272727   
+22           0.265204            0.282712       ...                  0.270729   
+23           0.270189            1.000000       ...                  0.276723   
+
+    split2_train_score  split3_test_score  split3_train_score  \
+0             1.000000           0.283283            1.000000   
+1             1.000000           0.283283            1.000000   
+2             0.511628           0.265265            0.526868   
+3             1.000000           0.283283            1.000000   
+4             0.441610           0.289289            0.447138   
+5             1.000000           0.300300            1.000000   
+6             0.401350           0.295295            0.408398   
+7             1.000000           0.308308            1.000000   
+8             0.374344           0.290290            0.387403   
+9             1.000000           0.298298            1.000000   
+10            0.367842           0.282282            0.372907   
+11            1.000000           0.287287            1.000000   
+12            0.354339           0.277277            0.356411   
+13            1.000000           0.293293            1.000000   
+14            0.337334           0.284284            0.338665   
+15            1.000000           0.293293            1.000000   
+16            0.321580           0.279279            0.332167   
+17            1.000000           0.289289            1.000000   
+18            0.288572           0.270270            0.296426   
+19            1.000000           0.273273            1.000000   
+20            0.278070           0.259259            0.285429   
+21            1.000000           0.268268            1.000000   
+22            0.265816           0.262262            0.277681   
+23            1.000000           0.266266            1.000000   
+
+    split4_test_score  split4_train_score  std_fit_time  std_score_time  \
+0            0.264056            1.000000      0.018176        0.523817   
+1            0.264056            1.000000      0.034904        0.354719   
+2            0.245984            0.519231      0.047699        0.331455   
+3            0.266064            1.000000      0.102995        0.473585   
+4            0.272088            0.440310      0.057049        1.325967   
+5            0.281124            1.000000      0.065658        1.305469   
+6            0.271084            0.404595      0.025072        1.043987   
+7            0.288153            1.000000      0.048303        0.921164   
+8            0.282129            0.381868      0.067897        1.209696   
+9            0.288153            1.000000      0.025838        1.054670   
+10           0.276104            0.371878      0.041303        0.820079   
+11           0.279116            1.000000      0.006918        0.180553   
+12           0.275100            0.355894      0.055272        0.457419   
+13           0.285141            1.000000      0.027836        0.795125   
+14           0.269076            0.343656      0.020693        0.956924   
+15           0.277108            1.000000      0.018426        0.071761   
+16           0.281124            0.325924      0.024024        0.666899   
+17           0.284137            1.000000      0.054571        0.729333   
+18           0.265060            0.294705      0.027535        1.131485   
+19           0.273092            1.000000      0.036342        1.173662   
+20           0.265060            0.281469      0.044576        1.180125   
+21           0.267068            1.000000      0.005279        0.975476   
+22           0.266064            0.269481      0.029156        3.154989   
+23           0.264056            1.000000      0.019700        1.049663   
+
+    std_test_score  std_train_score  
+0         0.011819         0.000000  
+1         0.011819         0.000000  
+2         0.008903         0.005716  
+3         0.012012         0.000000  
+4         0.014548         0.006360  
+5         0.014586         0.000000  
+6         0.010174         0.004058  
+7         0.011683         0.000000  
+8         0.008105         0.004520  
+9         0.010524         0.000000  
+10        0.004363         0.004753  
+11        0.007451         0.000000  
+12        0.003864         0.001131  
+13        0.005857         0.000000  
+14        0.006802         0.002403  
+15        0.009438         0.000000  
+16        0.003787         0.004038  
+17        0.004601         0.000000  
+18        0.006785         0.004896  
+19        0.006772         0.000000  
+20        0.003424         0.004477  
+21        0.002404         0.000000  
+22        0.004300         0.006040  
+23        0.005504         0.000000  
+
+[24 rows x 22 columns]
+**************************************************
+best_parameters: KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='minkowski',
+           metric_params=None, n_jobs=1, n_neighbors=9, p=2,
+           weights='distance')
+****************************************************************************************************
+begin final classifier
+Got 3531 / 10000 correct => accuracy: 0.353100
