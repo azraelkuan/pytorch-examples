@@ -37,13 +37,10 @@ print("Sample Data shape: x_train: {}, x_test: {}".format(x_train.shape, x_test.
 num_folds = 5
 k_choices = [1, 3, 5, 8, 10, 12, 15, 20, 50, 100]
 
-x_train_folds = []
-y_train_folds = []
-
 
 range_split = np.array_split(range(x_train.shape[0]), num_folds)
-y_train_folds = [ y_train[range_split[i]] for i in range(num_folds)]
-x_train_folds = [ x_train[range_split[i]] for i in range(num_folds)]
+y_train_folds = [y_train[range_split[i]] for i in range(num_folds)]
+x_train_folds = [x_train[range_split[i]] for i in range(num_folds)]
 
 k_to_accuracies = {}
 
@@ -72,11 +69,11 @@ for k in sorted(k_to_accuracies):
     for accuracy in k_to_accuracies[k]:
         print("k = %d, accuracy = %f" % (k, accuracy))
 
-accuracies_mean = np.array([np.mean(v) for k,v in sorted(k_to_accuracies.items())])
+accuracies_mean = np.array([np.mean(v) for k, v in sorted(k_to_accuracies.items())])
 
 best_k = k_choices[np.argmax(accuracies_mean)]
 
-classifier = KNearestNeighbor(n_neighbors=best_k)
+classifier = KNeighborsClassifier(n_neighbors=best_k)
 classifier.fit(X_train, Y_train)
 Y_test_pred = classifier.predict(X_test)
 
