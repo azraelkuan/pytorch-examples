@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import pickle
 from data_utils import load_CIFAR10
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.linear_model import SGDClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV
 
@@ -38,10 +38,14 @@ x_test = np.reshape(x_test, (x_test.shape[0], -1))
 print("Sample Data shape: x_train: {}, x_test: {}".format(x_train.shape, x_test.shape))
 
 print("Begin to select best_parameters")
-classifier = KNeighborsClassifier()
-pipeline = Pipeline([("knn", classifier)])
+classifier = SGDClassifier()
+pipeline = Pipeline([("svm", classifier)])
 param_grid = [
-  {'knn__n_neighbors': [1, 3, 5, 7, 9, 10, 13, 17, 20, 50, 75, 100], 'knn__weights':['uniform', 'distance']},
+  {'svm__alpha': [5e3, 1e4, 5e4, 1e5, 5e5],
+   'svm__learning_rate': 'constant',
+   'svm__eta0': [5e-6, 1e-6, 5e-7, 1e-7],
+   'svm_max_iter': [300, 600, 900, 1200]
+   },
  ]
 grid_search = GridSearchCV(pipeline, param_grid=param_grid, verbose=10, n_jobs=20, cv=5)
 grid_search.fit(x_train, y_train)
@@ -56,7 +60,8 @@ print("best_parameters: {}".format(best_parameters))
 
 print("*"*100)
 print("begin final classifier")
-final_classifier = KNeighborsClassifier(n_neighbors=best_parameters.n_neighbors, weights=best_parameters.weights, n_jobs=20)
+final_classifier = SGDClassifier(alpha=best_parameters.alpha, learning_rate='constant',
+                                 eta0=best_parameters.eta0, max_iter=best_parameters.max_iter)
 final_classifier.fit(X_train, Y_train)
 
 Y_test_pred = final_classifier.predict(X_test)
@@ -65,6 +70,6 @@ num_correct = np.sum(Y_test_pred == Y_test)
 accuracy = float(num_correct) / len(Y_test)
 print('Got %d / %d correct => accuracy: %f' % (num_correct, len(Y_test), accuracy))
 
-with open('model/knn.pickle', 'wb') as f:
+with open('model/svm.pickle', 'wb') as f:
     pickle.dump(final_classifier, f)
 
