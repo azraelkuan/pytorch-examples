@@ -9,7 +9,7 @@ from pre_process import transform_train, transform_test
 
 
 use_cuda = torch.cuda.is_available()
-num_epochs = 200
+num_epochs = 100
 batch_size = 100
 
 train_dataset = torchvision.datasets.CIFAR10(root="../data/", train=True, download=False, transform=transform_train)
@@ -19,8 +19,8 @@ test_dataset = torchvision.datasets.CIFAR10(root="../data", train=False, downloa
 test_dataloader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=2)
 
 # net = model.LogisticRegression(3072, 10)
-#net = model.DNN(3072, 4096, 10)
-net = model.ResNet18()
+net = model.DNN(3072, 4096, 10)
+# net = model.ResNet18()
 if use_cuda:
     net = net.cuda()
 

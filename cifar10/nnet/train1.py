@@ -21,10 +21,6 @@ test_dataset = torchvision.datasets.CIFAR10(root="../data", train=False, downloa
 x_train = train_dataset.train_data
 y_train = train_dataset.train_labels
 
-mean = np.mean(x_train)
-std = np.std(x_train)
-x_train = (x_train - mean) / std
-
 x_train = x_train.reshape(x_train.shape[0], -1).astype(np.float32)
 y_train = np.array(y_train).astype(np.int64)
 

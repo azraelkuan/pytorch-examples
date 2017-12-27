@@ -21,6 +21,13 @@ print('Test labels shape: ', Y_test.shape)
 X_train = np.reshape(X_train, (X_train.shape[0], -1))
 X_test = np.reshape(X_test, (X_test.shape[0], -1))
 
+
+# do norm
+mean = np.mean(X_train, axis=0)
+X_train -= mean
+X_test -= mean
+X_train = np.hstack([X_train, np.ones((X_train.shape[0], 1))])
+X_test = np.hstack([X_test, np.ones((X_test.shape[0], 1))])
 # subsample the data to find the best k
 
 num_training = 5000
@@ -41,13 +48,14 @@ print("Begin to select best_parameters")
 classifier = SGDClassifier()
 pipeline = Pipeline([("svm", classifier)])
 param_grid = [
-  {'svm__alpha': [5e3, 1e4, 5e4, 1e5, 5e5],
-   'svm__learning_rate': 'constant',
-   'svm__eta0': [5e-6, 1e-6, 5e-7, 1e-7],
-   'svm_max_iter': [300, 600, 900, 1200]
+  {'svm__alpha': [1e-1, 1, 10, 1e-2],
+   'svm__learning_rate': ['constant'],
+   'svm__eta0': [1e-7, 1e-6, 1e-5, 1e-4],
+   'svm__max_iter': [1500],
+   'svm__average': [128, 256]
    },
  ]
-grid_search = GridSearchCV(pipeline, param_grid=param_grid, verbose=10, n_jobs=20, cv=5)
+grid_search = GridSearchCV(pipeline, param_grid=param_grid, verbose=10, n_jobs=20, cv=10)
 grid_search.fit(x_train, y_train)
 
 print("*"*50)
@@ -55,13 +63,13 @@ cv_results = pd.DataFrame(grid_search.cv_results_)
 print(cv_results)
 print("*"*50)
 
-best_parameters = grid_search.best_estimator_.named_steps['knn']
+best_parameters = grid_search.best_estimator_.named_steps['svm']
 print("best_parameters: {}".format(best_parameters))
 
 print("*"*100)
 print("begin final classifier")
 final_classifier = SGDClassifier(alpha=best_parameters.alpha, learning_rate='constant',
-                                 eta0=best_parameters.eta0, max_iter=best_parameters.max_iter)
+                                 eta0=best_parameters.eta0, max_iter=4000, verbose=10,average=best_parameters.average)
 final_classifier.fit(X_train, Y_train)
 
 Y_test_pred = final_classifier.predict(X_test)
