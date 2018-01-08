@@ -9,7 +9,7 @@ from pre_process import transform_train, transform_test
 
 
 use_cuda = torch.cuda.is_available()
-num_epochs = 100
+num_epochs = 50
 batch_size = 100
 
 train_dataset = torchvision.datasets.CIFAR10(root="../data/", train=True, download=False, transform=transform_train)
@@ -19,14 +19,16 @@ test_dataset = torchvision.datasets.CIFAR10(root="../data", train=False, downloa
 test_dataloader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False, num_workers=2)
 
 # net = model.LogisticRegression(3072, 10)
-net = model.DNN(3072, 4096, 10)
+# net = model.DNN(3072, 4096, 10)
 # net = model.ResNet18()
+net = model.VGG('VGG11')
 if use_cuda:
     net = net.cuda()
 
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.Adam(net.parameters(), lr=0.001)
-scheduler = ReduceLROnPlateau(optimizer, verbose=True, min_lr=1e-7)
+optimizer = optim.SGD(net.parameters(), lr=0.1)
+scheduler = ReduceLROnPlateau(optimizer, verbose=True, min_lr=1e-5)
+best_test = []
 
 for epoch in range(num_epochs):
     correct = 0
@@ -51,10 +53,10 @@ for epoch in range(num_epochs):
         total_loss += loss.data[0]
 
         if (i + 1) % 100 == 0:
-            print('Epoch: [%d/%d], Step: [%d/%d], Loss: %.4f Acc: %d %%'
+            print('Epoch: [%d/%d], Step: [%d/%d], Loss: %.4f Acc: %f %%'
                   % (epoch + 1, num_epochs, i + 1,
                      len(train_dataset) // batch_size, total_loss/(i+1),
-                     round(100 * correct / total, 2)))
+                     100*round(correct / total, 4)))
 
     correct = 0
     total = 0
@@ -70,7 +72,8 @@ for epoch in range(num_epochs):
         _, predicted = torch.max(outputs.data, 1)
         total += labels.size(0)
         correct += predicted.eq(labels.data).cpu().sum()
-
-    print('Test Loss %.4f Accuracy : %d %%' % (total_loss/len(test_dataloader), 100 * correct / total))
+    best_test.append(100 * correct / total)
+    print('Test Loss %.4f Accuracy : %.4f %%' % (total_loss/len(test_dataloader), 100 * correct / total))
 
     scheduler.step(total_loss/len(test_dataloader))
+print("Best Test Acc: {}".format(max(best_test)))
