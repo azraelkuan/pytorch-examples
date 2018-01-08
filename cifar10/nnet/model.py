@@ -3,19 +3,6 @@ import numpy as np
 import torch.nn.functional as F
 
 
-class LogisticRegression(nn.Module):
-    def __init__(self, input_dim, output_dim):
-        super(LogisticRegression, self).__init__()
-        self.linear = nn.Linear(input_dim, output_dim)
-        nn.init.xavier_uniform(self.linear.weight, gain=np.sqrt(2))
-
-    def forward(self, x):
-        batch_size = x.size(0)
-        x = x.view(batch_size, -1)
-        out = self.linear(x)
-        return out
-
-
 class DNN(nn.Module):
     def __init__(self, input_dim, hidden_dim, output_dim):
         super(DNN, self).__init__()
@@ -33,40 +20,6 @@ class DNN(nn.Module):
         batch_size = x.size(0)
         x = x.view(batch_size, -1)
         out = self.linear(x)
-        return out
-
-
-class CNN(nn.Module):
-    def __init__(self):
-        super(CNN, self).__init__()
-        self.features = nn.ModuleList()
-        self.features += self._make_layers(3, 16, 3)
-        self.features += self._make_layers(16, 32, 3)
-        # self.features += self._make_layers(32, 32, 3)
-        # self.features += self._make_layers(32, 32, 3)
-        self.features += self._make_layers(32, 64, 3)
-        self.conv = nn.Sequential(*self.features)
-        self.linear = nn.Sequential(
-            nn.Linear(1024, 10),
-        )
-
-    def init_params(self):
-        for m in self.modules():
-            if isinstance(m, nn.Conv2d):
-                nn.init.xavier_normal(m.weight.data)
-
-    def _make_layers(self, in_channels, out_channels, kernel_size):
-        return [
-            nn.Conv2d(in_channels, out_channels, kernel_size, padding=1),
-            nn.PReLU(),
-            nn.BatchNorm2d(out_channels),
-            nn.MaxPool2d(2)
-        ]
-
-    def forward(self, x):
-        out = self.conv(x)
-        out = out.view(out.size(0), -1)
-        out = self.linear(out)
         return out
 
 
@@ -164,34 +117,8 @@ def ResNet34():
     return ResNet(BasicBlock, [3, 4, 6, 3])
 
 
-cfg = {
-    'VGG11': [64, 'M', 128, 'M', 256, 256, 'M', 512, 512, 'M', 512, 512]
-}
+def ResNet50():
+    return ResNet(Bottleneck, [3, 4, 6, 3])
 
 
-class VGG(nn.Module):
-    def __init__(self, vgg_name):
-        super(VGG, self).__init__()
-        self.features = self._make_layers(cfg[vgg_name])
-        self.classifier = nn.Linear(2048, 10)
-
-    def forward(self, x):
-        out = self.features(x)
-        out = out.view(out.size(0), -1)
-        out = self.classifier(out)
-        return out
-
-    def _make_layers(self, cfg):
-        layers = []
-        in_channels = 3
-        for x in cfg:
-            if x == 'M':
-                layers += [nn.MaxPool2d(kernel_size=2, stride=2)]
-            else:
-                layers += [nn.Conv2d(in_channels, x, kernel_size=3, padding=1),
-                           nn.BatchNorm2d(x),
-                           nn.ReLU(inplace=True)]
-                in_channels = x
-        layers += [nn.AvgPool2d(kernel_size=1, stride=1)]
-        return nn.Sequential(*layers)
 
