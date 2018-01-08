@@ -10,6 +10,8 @@ class LogisticRegression(nn.Module):
         nn.init.xavier_uniform(self.linear.weight, gain=np.sqrt(2))
 
     def forward(self, x):
+        batch_size = x.size(0)
+        x = x.view(batch_size, -1)
         out = self.linear(x)
         return out
 
@@ -37,32 +39,32 @@ class DNN(nn.Module):
 class CNN(nn.Module):
     def __init__(self):
         super(CNN, self).__init__()
-        self.conv1 = nn.Conv2d(3, 32, 5, bias=True, padding=2)
-        self.conv2 = nn.Conv2d(32, 32, 5, bias=True, padding=2)
-        self.conv3 = nn.Conv2d(32, 64, 5, bias=True, padding=2)
-        self.linear1 = nn.Linear(576, 64, bias=True)
-        self.linear2 = nn.Linear(64, 10, bias=True)
-        self.bn1 = nn.BatchNorm3d(32)
-        self.bn2 = nn.BatchNorm2d(64)
-        self.init_params()
+        self.features = nn.ModuleList()
+        self.features += self._make_layers(3, 16, 3)
+        self.features += self._make_layers(16, 32, 3)
+        self.features += self._make_layers(32, 64, 3)
+        self.conv = nn.Sequential(*self.features)
+        self.linear = nn.Sequential(
+            nn.Linear(1024, 10),
+        )
 
     def init_params(self):
-        nn.init.normal(self.conv1.weight, std=0.0001, mean=0)
-        nn.init.normal(self.conv2.weight, std=0.001, mean=0)
-        nn.init.normal(self.conv3.weight, std=0.01, mean=0)
-        nn.init.normal(self.linear1.weight, std=0.1, mean=0)
-        nn.init.normal(self.linear2.weight, std=0.1, mean=0)
+        for m in self.modules():
+            if isinstance(m, nn.Conv2d):
+                nn.init.xavier_normal(m.weight.data)
+
+    def _make_layers(self, in_channels, out_channels, kernel_size):
+        return [
+            nn.Conv2d(in_channels, out_channels, kernel_size, padding=1),
+            nn.PReLU(),
+            nn.BatchNorm2d(out_channels),
+            nn.MaxPool2d(2)
+        ]
 
     def forward(self, x):
-        out = F.relu(self.conv1(x))
-        out = F.max_pool2d(self.bn1(out), 3, 2)
-        out = F.relu(self.conv2(out))
-        out = F.avg_pool2d(self.bn1(out), 3, 2)
-        out = F.relu(self.conv3(out))
-        out = F.avg_pool2d(self.bn2(out), 3, 2)
+        out = self.conv(x)
         out = out.view(out.size(0), -1)
-        out = F.relu(self.linear1(out))
-        out = self.linear2(out)
+        out = self.linear(out)
         return out
 
 
@@ -158,4 +160,19 @@ def ResNet18():
 
 def ResNet34():
     return ResNet(BasicBlock, [3, 4, 6, 3])
+
+
+
+class AlexNet(nn.Module):
+
+    def __init__(self):
+        super(AlexNet).__init__()
+
+
+    def forward(self):
+        pass
+
+
+    def _init_weights(self):
+        pass
 
