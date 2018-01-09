@@ -51,7 +51,7 @@ def test():
         ]))
     image_dataloader = DataLoader(image_dataset, num_workers=1, batch_size=1, shuffle=False)
 
-    model = torch.load('pkls/cnn.pkl')
+    model = torch.load('pkls/resnet18.pkl')
     net = model['model']
     acc = model['acc']
     print("acc: {}".format(acc))

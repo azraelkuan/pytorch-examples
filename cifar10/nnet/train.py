@@ -18,6 +18,7 @@ batch_size = 128
 
 model_names = {
     'dnn': model.DNN(3072, 4096, 10),
+    'cnn': model.CNN(),
     'resnet18': model.ResNet18(),
     'resnet34': model.ResNet34(),
     'resnet50': model.ResNet50()
@@ -51,7 +52,7 @@ def main():
 
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(net.parameters(), lr=args.lr)
-    scheduler = ReduceLROnPlateau(optimizer, verbose=True, min_lr=1e-4, factor=0.1)
+    scheduler = ReduceLROnPlateau(optimizer, verbose=True, min_lr=1e-3, factor=0.2, patience=1)
     test_results = []
     current_test_acc = 0
 
@@ -77,7 +78,7 @@ def main():
             correct += predicted.eq(labels.data).cpu().sum()
             total_loss += loss.data[0]
 
-            if (i + 1) % 100 == 0:
+            if (i + 1) % 200 == 0:
                 print('Epoch: [%d/%d], Step: [%d/%d], Loss: %.4f Acc: %f %%'
                       % (epoch + 1, args.num_epochs, i + 1,
                          len(train_dataset) // args.batch_size, total_loss/(i+1),
@@ -100,7 +101,7 @@ def main():
         test_results.append(100 * correct / total)
         if correct / total > current_test_acc:
             current_test_acc = correct / total
-            torch.save({'model': net, 'acc': current_test_acc}, 'model/{}.pkl'.format(args.model_type))
+            torch.save({'model': net, 'acc': current_test_acc}, 'pkls/{}.pkl'.format(args.model_type))
 
         print('Test Loss %.4f Accuracy : %.2f %%' % (total_loss/len(test_dataloader), 100 * correct / total))
 

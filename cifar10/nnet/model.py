@@ -23,6 +23,41 @@ class DNN(nn.Module):
         return out
 
 
+class CNN(nn.Module):
+    def __init__(self):
+        super(CNN, self).__init__()
+        self.features = nn.ModuleList()
+        self.features += self._make_layers(3, 16, 3)
+        self.features += self._make_layers(16, 32, 3)
+        self.features += self._make_layers(32, 32, 3)
+        self.features += self._make_layers(32, 32, 3)
+        self.features += self._make_layers(32, 64, 3)
+        self.conv = nn.Sequential(*self.features)
+        self.linear = nn.Sequential(
+            nn.Linear(64, 10),
+        )
+
+    def init_params(self):
+        for m in self.modules():
+            if isinstance(m, nn.Conv2d):
+                nn.init.xavier_normal(m.weight.data)
+
+    def _make_layers(self, in_channels, out_channels, kernel_size):
+        return [
+            nn.Conv2d(in_channels, out_channels, kernel_size, padding=1),
+            nn.PReLU(),
+            nn.BatchNorm2d(out_channels),
+            nn.MaxPool2d(2)
+        ]
+
+    def forward(self, x):
+        out = self.conv(x)
+        out = out.view(out.size(0), -1)
+        out = self.linear(out)
+        return out
+
+
+
 class BasicBlock(nn.Module):
     expansion = 1
 
